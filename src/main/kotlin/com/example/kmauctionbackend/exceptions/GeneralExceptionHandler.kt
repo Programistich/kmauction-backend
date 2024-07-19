@@ -18,6 +18,13 @@ class GeneralExceptionHandler {
     }
 
     @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BusinessLogicException::class)
+    fun handleBusinessLogicExceptions(exception: BusinessLogicException): ServerErrorResponse {
+        return ServerErrorResponse(exception.message, exception.javaClass.simpleName)
+    }
+
+    @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(RuntimeException::class)
     fun handleRuntimeExceptions(exception: RuntimeException): ServerErrorResponse {

@@ -1,10 +1,12 @@
 package com.example.kmauctionbackend.entities
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -18,5 +20,11 @@ data class User(
     var email: String,
 
     @Column(name = "name", nullable = false)
-    var name: String
+    var name: String,
+
+    @Column(name = "telegram_id")
+    var telegramId: Long? = null,
+
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var telegramTokens: List<TelegramToken> = mutableListOf()
 )

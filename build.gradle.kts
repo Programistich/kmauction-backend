@@ -21,28 +21,21 @@ repositories {
 }
 
 dependencies {
+    // Spring
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//
-//    implementation("com.azure.spring:spring-cloud-azure-starter-active-directory:5.14.0")
-//    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.3.1")
 
+    // Telegram
+    implementation("org.telegram:telegrambots-springboot-longpolling-starter:7.2.1")
+    implementation("org.telegram:telegrambots-client:7.2.1")
 
-//    implementation("com.azure.spring:spring-cloud-azure-starter-active-directory:5.14.0")
-//    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-//    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-
-//    implementation("org.springframework.security:spring-security-oauth2-client")
-//    implementation("org.springframework.security:spring-security-oauth2-jose")
-//    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-//    implementation("com.nimbusds:oauth2-oidc-sdk:9.9")
-//    implementation("com.nimbusds:nimbus-jose-jwt:9.9")
-
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
+    // DB
     implementation("org.flywaydb:flyway-core:10.15.2")
     implementation("org.flywaydb:flyway-database-postgresql:10.15.2")
     runtimeOnly("org.postgresql:postgresql")
