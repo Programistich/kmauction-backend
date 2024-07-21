@@ -1,0 +1,41 @@
+version: "3.3"
+
+services:
+  kmauction-db:
+    container_name: kmauction-db
+    image: postgres:14
+    restart: always
+    networks:
+      kmauction-net:
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    ports:
+      - "127.0.0.1:5434:5432"
+
+  kmauction-backend:
+    container_name: kmauction-backend
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    networks:
+      kmauction-net:
+    environment:
+      - JDBC_URL=jdbc:postgresql://kmauction-db:5432/${POSTGRES_DB}
+      - TELEGRAM_BOT_TOKEN
+      - TELEGRAM_BOT_USERNAME
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    depends_on:
+      - kmauction-db
+
+volumes:
+  postgres-data:
+
+networks:
+  kmauction-net:
